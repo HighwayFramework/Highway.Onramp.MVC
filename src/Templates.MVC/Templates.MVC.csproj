@@ -54,6 +54,9 @@
     <Reference Include="Castle.Services.Logging.Log4netIntegration">
       <HintPath>..\packages\Castle.Core-log4net.3.1.0\lib\net40\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Services.Logging.NLogIntegration">
+      <HintPath>..\packages\Castle.Core-NLog.3.1.0\lib\net40-client\Castle.Services.Logging.NLogIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.1.0\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
@@ -79,6 +82,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -111,12 +117,12 @@
     <Compile Include="App_Start\ControllerFactoryWireup.cs" />
     <Compile Include="App_Start\FilterProvidersWireup.cs" />
     <Compile Include="App_Start\IoC.cs" />
-    <Compile Include="App_Start\LogAnnouncements.cs" />
-    <Compile Include="App_Start\SetDatabaseInitializer.cs" />
-    <Compile Include="BaseTypes\BaseController.cs" />
+    <Compile Include="App_Start\LoggerAnnouncementsWireup.cs" />
+    <Compile Include="App_Start\DatabaseInitializerWireup.cs" />
+    <Compile Include="BaseTypes\BaseLoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
-    <Compile Include="Filters\IoCFilterProvider.cs" />
+    <Compile Include="Services\IoCFilterProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,7 +130,7 @@
     <Compile Include="Installers\HighwayDataInstaller.cs" />
     <Compile Include="Installers\FilterInstaller.cs" />
     <Compile Include="Installers\LoggingInstaller.cs" />
-    <Compile Include="Installers\WindsorControllerFactory.cs" />
+    <Compile Include="Services\WindsorControllerFactory.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
     <Compile Include="Models\Mappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,8 +202,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="log4net.config">
+    <Content Include="NLog.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

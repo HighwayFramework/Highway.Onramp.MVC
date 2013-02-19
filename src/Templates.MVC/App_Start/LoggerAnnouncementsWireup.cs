@@ -15,26 +15,29 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using Castle.Core.Logging;
+using System.Data.Entity;
+using Templates.Models;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.FilterProvidersWireup), "PostStartup")]
+[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "PostStartup")]
+[assembly: WebActivator.ApplicationShutdownMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "Shutdown")]
 namespace Templates.App_Start
 {
-    public static class FilterProvidersWireup
+    public static class LoggerAnnouncementsWireup
     {
         private static ILogger logger = NullLogger.Instance;
-
         public static void PostStartup()
         {
 #pragma warning disable 618
-            var allProviders = IoC.Container.ResolveAll<IFilterProvider>();
+            logger = IoC.Container.Resolve<ILogger>();
 #pragma warning restore 618
-            foreach (var provider in allProviders)
-            {
-                logger.InfoFormat("Registering IFilterProvider : {0}", provider.GetType().Name);
-                FilterProviders.Providers.Add(provider);
-            }
+
+            logger.Info("Application Startup Completed");
+        }
+
+        public static void Shutdown()
+        {
+            logger.Info("Application Shutdown");
         }
     }
 }

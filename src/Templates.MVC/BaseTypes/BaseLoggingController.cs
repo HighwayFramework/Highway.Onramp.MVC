@@ -1,4 +1,4 @@
-// Copyright 2013 Timothy J. Rayburn
+﻿// Copyright 2013 Timothy J. Rayburn
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,26 +15,18 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using Castle.Windsor;
+using Castle.Core.Logging;
 using System.Collections.Generic;
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Templates.Services;
 
-namespace Templates.Installers
+namespace Templates.BaseTypes
 {
-    public class ControllerInstaller : IWindsorInstaller
+    public class BaseLoggingController : Controller
     {
-        public void Install(IWindsorContainer container, IConfigurationStore store)
+        public ILogger Logger { get; set; }
+
+        public BaseLoggingController()
         {
-            container.Register(
-                AllTypes.FromThisAssembly()
-                    .BasedOn<IController>()
-                    .LifestyleTransient(),
-                Component.For<IControllerFactory>()
-                    .ImplementedBy<WindsorControllerFactory>()
-                    .LifestyleSingleton()
-                );
+            Logger = NullLogger.Instance;
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Net;
 
 namespace Templates.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : BaseLoggingController
     {
         private IRepository repo;
 

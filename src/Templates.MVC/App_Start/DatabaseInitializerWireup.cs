@@ -14,27 +14,21 @@
 
 using System;
 using System.Linq;
-using System.Web.Mvc;
-using Castle.Windsor;
 using System.Collections.Generic;
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Templates.Services;
+using Highway.Data;
+using System.Data.Entity;
 
-namespace Templates.Installers
+[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.DatabaseInitializerWireup), "PostStartup")]
+namespace Templates.App_Start
 {
-    public class ControllerInstaller : IWindsorInstaller
+    public static class DatabaseInitializerWireup
     {
-        public void Install(IWindsorContainer container, IConfigurationStore store)
+        public static void PostStartup()
         {
-            container.Register(
-                AllTypes.FromThisAssembly()
-                    .BasedOn<IController>()
-                    .LifestyleTransient(),
-                Component.For<IControllerFactory>()
-                    .ImplementedBy<WindsorControllerFactory>()
-                    .LifestyleSingleton()
-                );
+#pragma warning disable 618
+            var initializer = IoC.Container.Resolve<IDatabaseInitializer<DataContext>>();
+#pragma warning restore 618
+            Database.SetInitializer(initializer);
         }
     }
 }
