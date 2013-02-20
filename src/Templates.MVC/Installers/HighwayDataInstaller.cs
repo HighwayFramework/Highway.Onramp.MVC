@@ -33,12 +33,21 @@ namespace Templates.Installers
         {
             container.Register(
                 Component.For<IDataContext>().ImplementedBy<HighwayDataContext>()
-                    .DependsOn(new { connectionString = @"Data Source=.;Initial Catalog=ChangeMyConnectionString;Integrated Security=SSPI;" }),
-                Component.For<IRepository>().ImplementedBy<Repository>(),
-                Component.For<IEventManager>().ImplementedBy<EventManager>(),
-                Component.For<IMappingConfiguration>().ImplementedBy<Mappings>(),
-                Component.For<IDatabaseInitializer<HighwayDataContext>>().ImplementedBy<DatabaseInitializer>(),
-                Component.For<IContextConfiguration>().ImplementedBy<ContextConfiguration>()
+                    .DependsOn(new
+                    {
+                        connectionString = @"Data Source=.;Initial Catalog=ChangeMyConnectionString;Integrated Security=SSPI;"
+                    })
+                    .LifestylePerWebRequest(),
+                Component.For<IRepository>().ImplementedBy<Repository>()
+                    .LifestylePerWebRequest(),
+                Component.For<IEventManager>().ImplementedBy<EventManager>()
+                    .LifestyleSingleton(),
+                Component.For<IMappingConfiguration>().ImplementedBy<HighwayMappings>()
+                    .LifestyleSingleton(),
+                Component.For<IDatabaseInitializer<HighwayDataContext>>().ImplementedBy<HighwayDatabaseInitializer>()
+                    .LifestyleSingleton(),
+                Component.For<IContextConfiguration>().ImplementedBy<HighwayContextConfiguration>()
+                    .LifestyleSingleton()
                 );
         }
     }

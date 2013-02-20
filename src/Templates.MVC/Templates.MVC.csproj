@@ -51,9 +51,6 @@
     <Reference Include="Castle.Facilities.Logging">
       <HintPath>..\packages\Castle.LoggingFacility.3.1.0\lib\net40\Castle.Facilities.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Services.Logging.Log4netIntegration">
-      <HintPath>..\packages\Castle.Core-log4net.3.1.0\lib\net40\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Services.Logging.NLogIntegration">
       <HintPath>..\packages\Castle.Core-NLog.3.1.0\lib\net40-client\Castle.Services.Logging.NLogIntegration.dll</HintPath>
     </Reference>
@@ -120,6 +117,8 @@
     <Compile Include="App_Start\LoggerAnnouncementsWireup.cs" />
     <Compile Include="App_Start\DatabaseInitializerWireup.cs" />
     <Compile Include="BaseTypes\BaseLoggingController.cs" />
+    <Compile Include="Config\ContextConfiguration.cs" />
+    <Compile Include="Config\HighwayDataContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
     <Compile Include="Services\IoCFilterProvider.cs" />
@@ -131,8 +130,8 @@
     <Compile Include="Installers\FilterInstaller.cs" />
     <Compile Include="Installers\LoggingInstaller.cs" />
     <Compile Include="Services\WindsorControllerFactory.cs" />
-    <Compile Include="Models\DatabaseInitializer.cs" />
-    <Compile Include="Models\Mappings.cs" />
+    <Compile Include="Config\DatabaseInitializer.cs" />
+    <Compile Include="Config\Mappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +196,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">

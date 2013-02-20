@@ -23,11 +23,11 @@ namespace Templates.Config
 {
     // Remove the obsolete attribute once you've addressed this change.
     // TODO Change the base class for this to an Initializer that matches your strategy.
-    public class DatabaseInitializer : DropCreateDatabaseAlways<HighwayDataContext>
+    public class HighwayDatabaseInitializer : DropCreateDatabaseAlways<HighwayDataContext>
     {
         public ILogger Logger { get; set; }
 
-        public DatabaseInitializer() 
+        public HighwayDatabaseInitializer() 
         {
             Logger = NullLogger.Instance;
         }

@@ -20,7 +20,7 @@ using Highway.Data;
 
 namespace Templates.Config
 {
-    public class Mappings : IMappingConfiguration
+    public class HighwayMappings : IMappingConfiguration
     {
         public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
         {

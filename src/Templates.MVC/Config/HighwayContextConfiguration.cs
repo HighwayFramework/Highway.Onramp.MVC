@@ -21,7 +21,7 @@ using System.Data.Entity;
 
 namespace Templates.Config
 {
-    public class ContextConfiguration : IContextConfiguration
+    public class HighwayContextConfiguration : IContextConfiguration
     {
         public void ConfigureContext(DbContext context)
         {

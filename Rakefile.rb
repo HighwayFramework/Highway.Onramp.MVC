@@ -14,7 +14,7 @@ TEMPLATE_FILE = 'Templates.MVC.sln'
 MSTEST        = ENV['VS110COMNTOOLS'] + "..\\IDE\\mstest.exe"
 NUGET         = SOLUTION_DIR + "/.nuget/nuget.exe"
 
-task :default                     => ['build:msbuild', 'build:templates']
+task :default                     => ['build:mvc', 'build:data', 'build:logging']
 task :test                        => ['build:mstest' ]
 task :package                     => ['package:packall']
 task :push                        => ['package:pushall']
@@ -36,7 +36,16 @@ namespace :build do
 			convert_to_pp basePath, file, 'build_mvc/content/'
 		end
 	end
-	
+		
+	task :data do
+		create 'build_data/'
+		basePath = 'src/Templates.MVC/'
+		files = [ 'App_Start/DatabaseInitializerWireup.cs', 'Config/HighwayMappings.cs', 'Config/HighwayDataContext.cs', 'Config/HighwayContextConfiguration.cs', 'Config/HighwayDatabaseInitializer.cs', 'Installers/HighwayDataInstaller.cs' ]
+		files.each do |file|
+			convert_to_pp basePath, file, 'build_data/content/'
+		end
+	end
+
 	task :logging do
 		create 'build_logging/'
 		basePath = 'src/Templates.MVC/'
