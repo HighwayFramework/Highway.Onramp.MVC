@@ -1,4 +1,4 @@
-// Copyright 2013 Timothy J. Rayburn
+﻿// Copyright 2013 Timothy J. Rayburn
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,26 +16,22 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Castle.Core.Logging;
 using Highway.Data;
 
-namespace Templates.Models
+namespace Templates.Config
 {
-    // Remove the obsolete attribute once you've addressed this change.
-    // TODO Change the base class for this to an Initializer that matches your strategy.
-    public class DatabaseInitializer : DropCreateDatabaseAlways<DataContext>
+    public class Mappings : IMappingConfiguration
     {
-        public ILogger Logger { get; set; }
-
-        public DatabaseInitializer() 
+        public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
         {
-            Logger = NullLogger.Instance;
+            // TODO Create Mappings Here!
+            modelBuilder.Entity<DeleteMe>();
         }
+    }
 
-        protected override void Seed(DataContext context)
-        {
-            Logger.Info("Seeding Database");
-            base.Seed(context);
-        }
+    // TODO Delete this class once you've created your mappings
+    public class DeleteMe
+    {
+        public int Id { get; set; }
     }
 }

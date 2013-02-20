@@ -1,4 +1,4 @@
-﻿// Copyright 2013 Timothy J. Rayburn
+// Copyright 2013 Timothy J. Rayburn
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,22 +16,26 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Castle.Core.Logging;
 using Highway.Data;
 
-namespace Templates.Models
+namespace Templates.Config
 {
-    public class Mappings : IMappingConfiguration
+    // Remove the obsolete attribute once you've addressed this change.
+    // TODO Change the base class for this to an Initializer that matches your strategy.
+    public class DatabaseInitializer : DropCreateDatabaseAlways<HighwayDataContext>
     {
-        public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
-        {
-            // TODO Create Mappings Here!
-            modelBuilder.Entity<DeleteMe>();
-        }
-    }
+        public ILogger Logger { get; set; }
 
-    // TODO Delete this class once you've created your mappings
-    public class DeleteMe
-    {
-        public int Id { get; set; }
+        public DatabaseInitializer() 
+        {
+            Logger = NullLogger.Instance;
+        }
+
+        protected override void Seed(HighwayDataContext context)
+        {
+            Logger.Info("Seeding Database");
+            base.Seed(context);
+        }
     }
 }

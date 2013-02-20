@@ -1,7 +1,7 @@
 .DS_Store
 bin
 obj
-build
+build*
 *.user
 *.cache
 *.suo

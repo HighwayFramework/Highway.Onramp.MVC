@@ -14,12 +14,6 @@ TEMPLATE_FILE = 'Templates.MVC.sln'
 MSTEST        = ENV['VS110COMNTOOLS'] + "..\\IDE\\mstest.exe"
 NUGET         = SOLUTION_DIR + "/.nuget/nuget.exe"
 
-# --- Retrieve a list of all Test DLLS -------------------------------------------------------
-Dir.chdir('Highway/test')
-TEST_DLLS     = Dir.glob('*Tests').collect{|dll| File.join(dll, 'bin', CONFIG, dll + '.dll')}.map{|dll| 'Highway/test/' + dll }
-Dir.chdir('../..')
-# --------------------------------------------------------------------------------------------
-
 task :default                     => ['build:msbuild', 'build:templates']
 task :test                        => ['build:mstest' ]
 task :package                     => ['package:packall']
@@ -27,126 +21,42 @@ task :push                        => ['package:pushall']
 
 namespace :build do
 
-  msbuild :msbuild, [:targets] do |msb, args|
-    args.with_defaults(:targets => :Build)
-    msb.properties :configuration => CONFIG
-    msb.targets args[:targets]
-    msb.solution = "#{SOLUTION_DIR}/#{SOLUTION_FILE}"
-  end
-  
-  desc "MSTest Test Runner Example"
-	mstest :mstest => :msbuild do |mstest|
-	    mstest.command = "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\mstest.exe"
-	    mstest.assemblies TEST_DLLS
+  def convert_to_pp(basepath, infile, outpath)
+  	out_filename = outpath + infile + '.pp'
+  	File.open(out_filename,'w+') do |output_file|
+  		output_file.puts File.read(basepath + infile).gsub(/Templates\./,'$rootsnamespace$.')
+  	end
 	end
 	
-	msbuild :template_build, [:targets] do |msb, args|
-    args.with_defaults(:targets => :Build)
-    msb.properties :configuration => CONFIG
-    msb.targets args[:targets]
-    msb.solution = "#{TEMPLATE_DIR}/#{TEMPLATE_FILE}"
-  end
-	
-	task :templates => [ :template_build, :clean_templates_build, :create_templates_build ] do
-		appstart_files = Dir.glob('Templates/Templates.MVC/App_Start/*.cs')
-		basetypes_files = Dir.glob('Templates/Templates.MVC/BaseTypes/*.cs')
-		models_files = Dir.glob('Templates/Templates.MVC/Models/*.cs')
-		installers_files = Dir.glob('Templates/Templates.MVC/Installers/*.cs')
-		filters_files = Dir.glob('Templates/Templates.MVC/Filters/*.cs')
-		
-		appstart_files.each do |file|
-			out_filename = 'Templates/build/content/App_Start/' +  File.basename(file) + '.pp'
-			File.open(out_filename,'w+') do |output_file|
-				output_file.puts File.read(file).gsub(/Templates\./,'$rootnamespace$.')
-			end
+	task :mvc do
+		create 'build_mvc/'
+		basePath = 'src/Templates.MVC/'
+		files = [ 'App_Start/IoC.cs', 'Services/WindsorControllerFactory.cs', 'Installers/ControllerInstaller.cs', 'Installers/FilterInstaller.cs', 'Services/IoCFilterProvider.cs', 'App_Start/FilterProvidersWireup.cs', 'App_Start/ControllerFactoryWireup.cs' ]
+		files.each do |file|
+			convert_to_pp basePath, file, 'build_mvc/content/'
 		end
-		
-		basetypes_files.each do |file|
-			out_filename = 'Templates/build/content/BaseTypes/' +  File.basename(file) + '.pp'
-			File.open(out_filename,'w+') do |output_file|
-				output_file.puts File.read(file).gsub(/Templates\./,'$rootnamespace$.')
-			end
-		end
-		
-		models_files.each do |file|
-			out_filename = 'Templates/build/content/Models/' +  File.basename(file) + '.pp'
-			File.open(out_filename,'w+') do |output_file|
-				output_file.puts File.read(file).gsub(/Templates\./,'$rootnamespace$.')
-			end
-		end
-		
-		installers_files.each do |file|
-			out_filename = 'Templates/build/content/Installers/' +  File.basename(file) + '.pp'
-			File.open(out_filename,'w+') do |output_file|
-				output_file.puts File.read(file).gsub(/Templates\./,'$rootnamespace$.')
-			end
-		end
-		
-		filters_files.each do |file|
-			out_filename = 'Templates/build/content/Filters/' +  File.basename(file) + '.pp'
-			File.open(out_filename,'w+') do |output_file|
-				output_file.puts File.read(file).gsub(/Templates\./,'$rootnamespace$.')
-			end
-		end
-		
-		cp 'Templates/Templates.Mvc/log4net.config', 'Templates/build/content/'
-		cp 'Templates/Templates.Mvc/Highway.Mvc.Castle.nuspec', 'Templates/build/'
 	end
 	
-	task :clean_templates_build do
-		sh 'rm -rf Templates/build/'
-	end
-	
-	task :create_templates_build do
-		Dir.mkdir('Templates/build')
-		Dir.mkdir('Templates/build/lib')
-		Dir.mkdir('Templates/build/tools')
-		Dir.mkdir('Templates/build/content')
-		Dir.mkdir('Templates/build/content/App_Start')
-		Dir.mkdir('Templates/build/content/BaseTypes')
-		Dir.mkdir('Templates/build/content/Models')
-		Dir.mkdir('Templates/build/content/Installers')
-		Dir.mkdir('Templates/build/content/Filters')
-	end
-end
-
-namespace :package do
-	
-	def create_packs()
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data/Highway.Data.csproj -o pack'
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.EntityFramework/Highway.Data.EntityFramework.csproj -o pack'
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.NHibernate/Highway.Data.NHibernate.csproj -o pack'
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.RavenDB/Highway.Data.RavenDB.csproj -o pack'
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.EntityFramework.Castle/Highway.Data.EntityFramework.Castle.csproj -o pack'		
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.EntityFramework.Ninject/Highway.Data.EntityFramework.Ninject.csproj -o pack'	
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.EntityFramework.StructureMap/Highway.Data.EntityFramework.StructureMap.csproj -o pack'	
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Data.EntityFramework.Unity/Highway.Data.EntityFramework.Unity.csproj -o pack'
-		sh 'Highway/.nuget/nuget.exe pack Highway/src/Highway.Test.MSTest/Highway.Test.MSTest.csproj -o pack'
-		sh 'Highway/.nuget/nuget.exe pack Templates/build/Highway.Mvc.Castle.nuspec -o pack'
-	end
-		
-	task :packall => [ :clean ] do
-		Dir.mkdir('pack')
-		create_packs	
-		Dir.glob('pack/*') { |file| FileUtils.move(file,'nuget/') }
-		Dir.rmdir('pack')
-	end
-	
-	task :pushall => [ :clean ] do
-		Dir.mkdir('pack')
-		create_packs	
-		Dir.chdir('pack')
-		Dir.glob('*').each do |file| 
-			sh '../Highway/.nuget/nuget.exe push ' + file
-			FileUtils.move(file,'../nuget/')
+	task :logging do
+		create 'build_logging/'
+		basePath = 'src/Templates.MVC/'
+		files = [ 'App_Start/LoggerAnnouncementsWireup.cs', 'BaseTypes/BaseLoggingController.cs', 'Filters/ExceptionLoggingFilter.cs', 'Installers/LoggingInstaller.cs', 'NLog.config'  ]
+		files.each do |file|
+			convert_to_pp basePath, file, 'build_logging/content/'
 		end
-		Dir.chdir('..')
-		Dir.rmdir('pack')
 	end
 	
-	task :clean do
-		if Dir.exists? 'pack' 
-			FileUtils.remove_dir 'pack', force = true
-		end
+	def create(path)
+		sh 'rm -rf ' + path + '/'
+		Dir.mkdir(path)
+		Dir.mkdir(path + 'lib')
+		Dir.mkdir(path + 'tools')
+		Dir.mkdir(path + 'content')
+		Dir.mkdir(path + 'content/App_Start')
+		Dir.mkdir(path + 'content/BaseTypes')
+		Dir.mkdir(path + 'content/Services')
+		Dir.mkdir(path + 'content/Config')
+		Dir.mkdir(path + 'content/Installers')
+		Dir.mkdir(path + 'content/Filters')
 	end
 end
