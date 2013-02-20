@@ -117,8 +117,10 @@
     <Compile Include="App_Start\LoggerAnnouncementsWireup.cs" />
     <Compile Include="App_Start\DatabaseInitializerWireup.cs" />
     <Compile Include="BaseTypes\BaseLoggingController.cs" />
-    <Compile Include="Config\ContextConfiguration.cs" />
+    <Compile Include="Config\HighwayContextConfiguration.cs" />
+    <Compile Include="Config\HighwayDatabaseInitializer.cs" />
     <Compile Include="Config\HighwayDataContext.cs" />
+    <Compile Include="Config\HighwayMappings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\ExceptionLoggingFilter.cs" />
     <Compile Include="Services\IoCFilterProvider.cs" />
@@ -130,8 +132,6 @@
     <Compile Include="Installers\FilterInstaller.cs" />
     <Compile Include="Installers\LoggingInstaller.cs" />
     <Compile Include="Services\WindsorControllerFactory.cs" />
-    <Compile Include="Config\DatabaseInitializer.cs" />
-    <Compile Include="Config\Mappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

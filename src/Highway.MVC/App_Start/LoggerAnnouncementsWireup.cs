@@ -17,7 +17,6 @@ using System.Linq;
 using System.Collections.Generic;
 using Castle.Core.Logging;
 using System.Data.Entity;
-using Templates.Models;
 
 [assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "PostStartup")]
 [assembly: WebActivator.ApplicationShutdownMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "Shutdown")]
