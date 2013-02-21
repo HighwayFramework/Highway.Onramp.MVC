@@ -2,6 +2,7 @@
 bin
 obj
 build*
+output
 *.user
 *.cache
 *.suo
