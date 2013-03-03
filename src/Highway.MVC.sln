@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{61514E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspec", "nuspec", "{331CFD22-3BE4-4D09-8767-B1E3E53EA897}"
 	ProjectSection(SolutionItems) = preProject
-		Highway.Onramp.MVC.All.nuspec = Highway.Onramp.MVC.All.nuspec
-		Highway.Onramp.MVC.Data.nuspec = Highway.Onramp.MVC.Data.nuspec
-		Highway.Onramp.MVC.Logging.nuspec = Highway.Onramp.MVC.Logging.nuspec
+		nuspec\Highway.Onramp.MVC.All.nuspec = nuspec\Highway.Onramp.MVC.All.nuspec
+		nuspec\Highway.Onramp.MVC.Data.nuspec = nuspec\Highway.Onramp.MVC.Data.nuspec
+		nuspec\Highway.Onramp.MVC.Logging.nuspec = nuspec\Highway.Onramp.MVC.Logging.nuspec
 		nuspec\Highway.Onramp.MVC.nuspec = nuspec\Highway.Onramp.MVC.nuspec
 	EndProjectSection
 EndProject
