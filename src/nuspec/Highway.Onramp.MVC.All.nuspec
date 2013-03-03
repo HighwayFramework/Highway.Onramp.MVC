@@ -12,6 +12,7 @@
     <copyright>Copyright 2013 Timothy J. Rayburn</copyright>
     <tags>Highway MVC architecture</tags>
     <dependencies>
+      <dependency id="Highway.Onramp.MVC" />
       <dependency id="Highway.Onramp.MVC.Data" />
       <dependency id="Highway.Onramp.MVC.Logging" />
     </dependencies>
