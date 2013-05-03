@@ -19,7 +19,6 @@ using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
-using Highway.Data.Interfaces;
 using Highway.Data.EventManagement;
 using Highway.Data;
 using System.Data.Entity;

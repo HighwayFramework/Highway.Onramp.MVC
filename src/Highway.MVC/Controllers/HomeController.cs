@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Templates.BaseTypes;
-using Highway.Data.Interfaces;
+using Highway.Data;
 using Templates.Config;
 
 namespace Templates.Controllers
