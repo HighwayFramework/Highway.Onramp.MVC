@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Highway.Onramp.MVC.Logging</id>
-    <version>2.0.0-Alpha2</version>
+    <version>2.0.0-Alpha3</version>
     <authors>Tim Rayburn and Devlin Liles</authors>
     <owners>TRayburn</owners>
     <licenseUrl>https://github.com/HighwayFramework/Highway.Onramp.MVC/blob/master/README.markdown</licenseUrl>
