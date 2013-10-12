@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Highway.Onramp.MVC.All</id>
-    <version>2.0.0</version>
+    <version>3.0.0.0</version>
     <authors>Tim Rayburn and Devlin Liles</authors>
     <owners>TRayburn</owners>
     <licenseUrl>https://github.com/HighwayFramework/Highway.MVC/blob/master/README.markdown</licenseUrl>
