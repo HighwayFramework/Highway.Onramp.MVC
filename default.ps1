@@ -3,8 +3,9 @@ Framework "4.0"
 properties {
     $build_config = "Release"
     $pack_dir = ".\pack"
+    $build_dir = Get-Item ".\build"
     $build_archive = ".\buildarchive"
-    $nugetexe = ".\src\.nuget\NuGet.exe"
+    $nugetexe = Get-Item ".\src\.nuget\NuGet.exe"
     $onramperexe = ".\Onramper.exe"
     $version_number = "3.0.0.0"
     $nuget_version_number = $version_number
@@ -54,21 +55,31 @@ task Update-Version {
     }
 }
 
-##################################################################################################################
+task test-all -depends build-all {
+    $packages.Keys | % {
+        $key = $_
+        $versions = $packages[$key]
 
-task test-all -depends clean-buildarchive, Clean-TestResults {
-    $mstest = Get-ChildItem -Recurse -Force 'C:\Program Files (x86)\Microsoft Visual Studio *\Common7\IDE\MSTest.exe'
-    $mstest = $mstest.FullName
-    $test_dlls = Get-ChildItem -Recurse ".\src\**\**\bin\release\*Tests.dll" |
-        ?{ $_.Directory.Parent.Parent.Name -eq ($_.Name.replace(".dll","")) }
-    $test_dlls | % { 
-        try {
-            exec { & "$mstest" /testcontainer:$($_.FullName) } 
-        } finally {
-            cp .\TestResults\*.trx $build_archive -Verbose
+        $versions | % {
+            $version = $_
+
+            Write-Host "########################################################################################"
+            Write-Host "# $key in $version"
+            Write-Host "########################################################################################"
+
+            Reset-Directory .\test-bed
+            Expand-ZIPFile -File ".\test-projects\$version.zip" -Destination .\test-bed
+
+            Add-PackageToConfig $key .\test-bed\TestProject\packages.config
+
+            Set-Content Env:\EnableNuGetPackageRestore -Value true
+            & $nugetexe restore .\test-bed\TestProject.sln -source $build_dir
+            rebuild .\test-bed\TestProject.sln
         }
     }
 }
+
+##################################################################################################################
 
 task pack-ci -depends clean-buildarchive, pack-all -precondition { Test-IsCI } {
     dir -Path "$pack_dir\*.nupkg" | % { 
@@ -121,6 +132,27 @@ function Reset-Directory($path) {
     }
     if (PathDoesNotExist $path) {
         New-Item -ItemType Directory -Path $path | Out-Null
+    }
+}
+
+function Expand-ZIPFile($File, $Destination) {
+    Add-Type -As System.IO.Compression.FileSystem
+
+    $ZipFile = Get-Item $File
+    $Dest = Get-Item $Destination
+
+    [IO.Compression.ZipFile]::ExtractToDirectory( $ZipFile, $Dest )
+}
+
+function Add-PackageToConfig($package,$config) {
+    $content = [xml] (Get-Content $config) 
+    $content.packages.InnerXml += "<package id=`"$package`" version=`"$version_number`" targetFramework=`"net45`" />"
+    $writer = New-Object System.Xml.XmlTextWriter($config,$null)
+    try {
+        $writer.Formatting = [System.Xml.Formatting]::Indented
+        $content.Save($writer)
+    } finally {
+        $writer.Dispose()
     }
 }
 
