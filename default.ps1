@@ -15,7 +15,7 @@ properties {
     }
 
     #$allVersions = @("MVC3","MVC4", "MVC5")
-    $allVersions = @("MVC3")
+    $allVersions = @("MVC3", "MVC4")
 
     $packages = @{
         "Highway.Onramp.MVC" = $allVersions;
