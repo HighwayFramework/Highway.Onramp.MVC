@@ -14,7 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspec", "nuspec", "{331CFD
 	ProjectSection(SolutionItems) = preProject
 		nuspec\Highway.Onramp.MVC.All.nuspec = nuspec\Highway.Onramp.MVC.All.nuspec
 		nuspec\Highway.Onramp.MVC.Data.nuspec = nuspec\Highway.Onramp.MVC.Data.nuspec
-		nuspec\Highway.Onramp.MVC.Logging.nuspec = nuspec\Highway.Onramp.MVC.Logging.nuspec
 		nuspec\Highway.Onramp.MVC.nuspec = nuspec\Highway.Onramp.MVC.nuspec
 	EndProjectSection
 EndProject
