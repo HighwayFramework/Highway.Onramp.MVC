@@ -1,8 +1,16 @@
 Framework "4.0"
 
 properties {
+    $msbuildexe = Get-Item "C:\Program Files (x86)\MSBuild\12.0\bin\amd64\msbuild.exe" -ErrorAction SilentlyContinue
+    if ($msbuildexe -eq $null) {
+        $msbuildexe = Get-Item "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" -ErrorAction SilentlyContinue
+        Assert ($msbuildexe -ne $null) "Unable to locate MSBuild.exe"
+    }
+
     $build_config = "Release"
     $pack_dir = ".\pack"
+
+    Reset-Directory .\build
     $build_dir = Get-Item ".\build"
     $build_archive = ".\buildarchive"
     $nugetexe = Get-Item ".\src\.nuget\NuGet.exe"
@@ -27,7 +35,7 @@ properties {
 
 task default -depends build
 task build -depends build-all
-task test -depends build-all, test-all
+task test -depends build-all #, test-all
 task pack -depends pack-all
 task push -depends push-all
 
@@ -40,9 +48,8 @@ task compile-template {
 }
 
 task onramper-template -depends Update-Version {
-    Reset-Directory .\build
     Remove-Item -Force -Recurse .\src\Highway.MVC\bin -ErrorAction SilentlyContinue
-    & $onramperexe --source=.\src\Highway.MVC --destination=.\build --config=.\src\nuspec\ --execute=$nugetexe
+    & $onramperexe --source=.\src\Templates --destination=.\build --config=.\src\nuspec\ --execute=$nugetexe
 }
 
 task Update-Version {
@@ -122,7 +129,7 @@ task clean-testresults {
 function rebuild([string]$slnPath) { 
     Set-Content Env:\EnableNuGetPackageRestore -Value true
     & $nugetexe restore $slnPath
-    exec { msbuild $slnPath /t:rebuild /v:q /clp:ErrorsOnly /nologo /p:Configuration=$build_config }
+    exec { & $msbuildexe $slnPath /t:rebuild /v:q /clp:ErrorsOnly /nologo /p:Configuration=$build_config }
 }
 
 
