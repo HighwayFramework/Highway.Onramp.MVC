@@ -3,13 +3,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Castle.Core.Logging;
-using Templates.App_Architecture;
+using Templates.App_Architecture.Activators;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(
-    typeof(Templates.App_Architecture.Activators.AnnouncementsActivator), 
+    typeof(AnnouncementsActivator), 
     "PostStartup")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(
-    typeof(Templates.App_Architecture.Activators.AnnouncementsActivator), 
+    typeof(AnnouncementsActivator), 
     "Shutdown")]
 namespace Templates.App_Architecture.Activators
 {

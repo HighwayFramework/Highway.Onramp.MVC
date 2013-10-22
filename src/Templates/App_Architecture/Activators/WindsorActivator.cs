@@ -7,12 +7,12 @@ using Castle.Windsor.Installer;
 using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
-using Templates.App_Architecture;
 using Castle.Components.DictionaryAdapter;
 using System.Configuration;
+using Templates.App_Architecture.Activators;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(
-    typeof(Templates.App_Architecture.Activators.WindsorActivator), 
+    typeof(WindsorActivator), 
     "Startup")]
 namespace Templates.App_Architecture.Activators
 {

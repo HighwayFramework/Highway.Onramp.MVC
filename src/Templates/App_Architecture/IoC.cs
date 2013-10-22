@@ -1,4 +1,5 @@
-﻿using Castle.Windsor;
+﻿// [[Highway.Onramp.MVC]]
+using Castle.Windsor;
 using System;
 using System.Collections.Generic;
 using System.Linq;

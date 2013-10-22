@@ -4,9 +4,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Castle.Core.Logging;
+using Templates.App_Architecture.Activators;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(
-    typeof(Templates.App_Architecture.Activators.FilterProviderActivator), 
+    typeof(FilterProviderActivator), 
     "PostStartup")]
 namespace Templates.App_Architecture.Activators
 {

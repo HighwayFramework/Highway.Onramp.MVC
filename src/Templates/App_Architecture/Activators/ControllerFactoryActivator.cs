@@ -3,10 +3,10 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using System.Collections.Generic;
-using Castle.Core.Logging;
+using Templates.App_Architecture.Activators;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(
-    typeof(Templates.App_Architecture.Activators.ControllerFactoryActivator), 
+    typeof(ControllerFactoryActivator), 
     "PostStartup")]
 namespace Templates.App_Architecture.Activators
 {
