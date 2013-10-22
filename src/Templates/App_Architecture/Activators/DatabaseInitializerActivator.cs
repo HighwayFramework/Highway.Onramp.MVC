@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity;
-using Templates.App_Architecture.Data;
+using Templates.App_Architecture.PlugIns.Data;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(
     typeof(Templates.App_Architecture.Activators.DatabaseInitializerActivator), 

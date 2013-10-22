@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using Highway.Data;
 
-namespace Templates.App_Architecture.Data
+namespace Templates.App_Architecture.PlugIns.Data
 {
     public class HighwayMappingConfiguration : IMappingConfiguration
     {

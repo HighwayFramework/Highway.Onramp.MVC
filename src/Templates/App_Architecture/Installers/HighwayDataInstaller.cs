@@ -8,7 +8,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Highway.Data.EventManagement;
 using Highway.Data;
 using System.Data.Entity;
-using Templates.App_Architecture.Data;
+using Templates.App_Architecture.PlugIns.Data;
 using Common.Logging;
 
 namespace Templates.App_Architecture.Installers

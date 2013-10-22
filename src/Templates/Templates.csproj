@@ -202,8 +202,8 @@
     <Compile Include="App_Architecture\Installers\CommonLoggingInstaller.cs" />
     <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />
     <Compile Include="App_Architecture\IoC.cs" />
-    <Compile Include="App_Architecture\Data\HighwayDataContext.cs" />
-    <Compile Include="App_Architecture\Data\HighwayMappingConfiguration.cs" />
+    <Compile Include="App_Architecture\PlugIns\Data\HighwayDataContext.cs" />
+    <Compile Include="App_Architecture\PlugIns\Data\HighwayMappingConfiguration.cs" />
     <Compile Include="App_Architecture\Filters\ExceptionLoggingFilter.cs" />
     <Compile Include="App_Architecture\Installers\ControllersInstaller.cs" />
     <Compile Include="App_Architecture\Installers\FiltersInstaller.cs" />
