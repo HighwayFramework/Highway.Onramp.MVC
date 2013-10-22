@@ -6,21 +6,18 @@ using Castle.Windsor;
 using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
-using Templates.Services;
+using Templates.App_Architecture.Services;
 
-namespace Templates.Installers
+namespace Templates.App_Architecture.Installers
 {
-    public class ControllerInstaller : IWindsorInstaller
+    public class ControllersInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly()
+                Classes.FromThisAssembly()
                     .BasedOn<IController>()
-                    .LifestyleTransient(),
-                Component.For<IControllerFactory>()
-                    .ImplementedBy<WindsorControllerFactory>()
-                    .LifestyleSingleton()
+                    .LifestyleTransient()
                 );
         }
     }

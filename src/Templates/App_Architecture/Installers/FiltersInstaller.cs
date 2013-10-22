@@ -7,18 +7,16 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
 using System.Web.Mvc;
-using Templates.Filters;
-using Templates.Services;
+using Templates.App_Architecture.Services;
+using Templates.App_Architecture.Filters;
 
-namespace Templates.Installers
+namespace Templates.App_Architecture.Installers
 {
-    public class FilterInstaller : IWindsorInstaller
+    public class FiltersInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IFilterProvider>().ImplementedBy<IoCFilterProvider>(),
-                Component.For<ExceptionLoggingFilter>().ImplementedBy<ExceptionLoggingFilter>(),
                 Component.For<Func<ControllerContext,ActionDescriptor,Filter>>().Instance(
                     (c,a) => new Filter(container.Resolve<ExceptionLoggingFilter>(), FilterScope.Last, int.MinValue))
                 );

@@ -2,14 +2,15 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Highway.Data;
 using System.Data.Entity;
-using Templates.Config;
+using Templates.App_Architecture.Data;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.DatabaseInitializerWireup), "PostStartup")]
-namespace Templates.App_Start
+[assembly: WebActivatorEx.PostApplicationStartMethod(
+    typeof(Templates.App_Architecture.Activators.DatabaseInitializerActivator), 
+    "PostStartup")]
+namespace Templates.App_Architecture.Activators
 {
-    public static class DatabaseInitializerWireup
+    public static class DatabaseInitializerActivator
     {
         public static void PostStartup()
         {

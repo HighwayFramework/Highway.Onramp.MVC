@@ -41,7 +41,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging">
+      <HintPath>..\packages\Castle.LoggingFacility.3.2.0\lib\net45\Castle.Facilities.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.NLogIntegration">
+      <HintPath>..\packages\Castle.Core-NLog.3.2.0\lib\net40\Castle.Services.Logging.NLogIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Highway.Data">
+      <HintPath>..\packages\Highway.Data.4.1.0.2\lib\net40\Highway.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Highway.Data.EntityFramework">
+      <HintPath>..\packages\Highway.Data.EntityFramework.4.1.0.2\lib\net40\Highway.Data.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Highway.Pavement">
+      <HintPath>..\packages\Highway.Pavement.0.3.0.0\lib\net40\Highway.Pavement.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -98,6 +128,9 @@
     <Reference Include="Newtonsoft.Json">
       <Private>True</Private>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -156,6 +189,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Architecture\Activators\ControllerFactoryActivator.cs" />
+    <Compile Include="App_Architecture\Activators\DatabaseInitializerActivator.cs" />
+    <Compile Include="App_Architecture\Activators\FilterProviderActivator.cs" />
+    <Compile Include="App_Architecture\Activators\WindsorActivator.cs" />
+    <Compile Include="App_Architecture\Activators\AnnouncementsActivator.cs" />
+    <Compile Include="App_Architecture\BaseTypes\BaseController.cs" />
+    <Compile Include="App_Architecture\Configs\IConnectionStringConfig.cs" />
+    <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />
+    <Compile Include="App_Architecture\IoC.cs" />
+    <Compile Include="App_Architecture\Data\HighwayDataContext.cs" />
+    <Compile Include="App_Architecture\Data\HighwayMappingConfiguration.cs" />
+    <Compile Include="App_Architecture\Filters\ExceptionLoggingFilter.cs" />
+    <Compile Include="App_Architecture\Installers\ControllersInstaller.cs" />
+    <Compile Include="App_Architecture\Installers\FiltersInstaller.cs" />
+    <Compile Include="App_Architecture\Installers\HighwayDataInstaller.cs" />
+    <Compile Include="App_Architecture\Installers\LoggingInstaller.cs" />
+    <Compile Include="App_Architecture\Services\WindsorFilterProvider.cs" />
+    <Compile Include="App_Architecture\Services\WindsorControllerFactory.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -179,12 +230,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="NLog.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

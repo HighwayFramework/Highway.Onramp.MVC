@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Castle.Core.Logging;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.FilterProvidersWireup), "PostStartup")]
-namespace Templates.App_Start
+[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Architecture.FilterProvidersWireup), "PostStartup")]
+namespace Templates.App_Architecture
 {
     public static class FilterProvidersWireup
     {

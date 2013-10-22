@@ -5,8 +5,8 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using Castle.Core.Logging;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.ControllerFactoryWireup), "PostStartup")]
-namespace Templates.App_Start
+[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Architecture.ControllerFactoryWireup), "PostStartup")]
+namespace Templates.App_Architecture
 {
     public static class ControllerFactoryWireup
     {

@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Castle.Core.Logging;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.FilterProvidersWireup), "PostStartup")]
-namespace Templates.App_Start
+[assembly: WebActivatorEx.PostApplicationStartMethod(
+    typeof(Templates.App_Architecture.Activators.FilterProviderActivator), 
+    "PostStartup")]
+namespace Templates.App_Architecture.Activators
 {
-    public static class FilterProvidersWireup
+    public static class FilterProviderActivator
     {
         private static ILogger logger = NullLogger.Instance;
 

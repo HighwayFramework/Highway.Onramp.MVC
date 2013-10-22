@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(Templates.App_Start.IoC), "Startup")]
-namespace Templates.App_Start
+[assembly: WebActivator.PreApplicationStartMethod(typeof(Templates.App_Architecture.IoC), "Startup")]
+namespace Templates.App_Architecture
 {
     public static class IoC
     {

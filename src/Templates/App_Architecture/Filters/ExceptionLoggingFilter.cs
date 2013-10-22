@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Castle.Core.Logging;
 using Castle.Windsor;
 
-namespace Templates.Filters
+namespace Templates.App_Architecture.Filters
 {
     public class ExceptionLoggingFilter : IExceptionFilter
     {

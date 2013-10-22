@@ -1,15 +1,19 @@
-// [[Highway.Onramp.MVC.Logging]]
+// [[Highway.Onramp.MVC]]
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using Castle.Core.Logging;
-using System.Data.Entity;
+using Templates.App_Architecture;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "PostStartup")]
-[assembly: WebActivator.ApplicationShutdownMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "Shutdown")]
-namespace Templates.App_Start
+[assembly: WebActivatorEx.PostApplicationStartMethod(
+    typeof(Templates.App_Architecture.Activators.AnnouncementsActivator), 
+    "PostStartup")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(
+    typeof(Templates.App_Architecture.Activators.AnnouncementsActivator), 
+    "Shutdown")]
+namespace Templates.App_Architecture.Activators
 {
-    public static class LoggerAnnouncementsWireup
+    public static class AnnouncementsActivator
     {
         private static ILogger logger = NullLogger.Instance;
         public static void PostStartup()

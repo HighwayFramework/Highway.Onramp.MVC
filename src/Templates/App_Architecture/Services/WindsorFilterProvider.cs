@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Templates.Services
+namespace Templates.App_Architecture.Services
 {
-    public class IoCFilterProvider : IFilterProvider
+    public class WindsorFilterProvider : IFilterProvider
     {
         private readonly IEnumerable<Func<ControllerContext, ActionDescriptor, Filter>> registeredFilters;
 
-        public IoCFilterProvider(Func<ControllerContext, ActionDescriptor, Filter>[] registeredFilters)
+        public WindsorFilterProvider(Func<ControllerContext, ActionDescriptor, Filter>[] registeredFilters)
         {
             this.registeredFilters = registeredFilters;
         }

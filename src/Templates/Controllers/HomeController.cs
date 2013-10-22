@@ -1,30 +1,32 @@
-﻿using System;
+﻿using Highway.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Templates.App_Architecture.BaseTypes;
+using Templates.App_Architecture.Data;
 
 namespace Templates.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        private IRepository repo;
+
+        public HomeController(IRepository repo)
+        {
+            this.repo = repo;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            Logger.Debug("Home Controller, checking in sir.");
+            return View(repo.Context.AsQueryable<DeleteMe>().ToList());
         }
 
-        public ActionResult About()
+        public ActionResult BlowUp()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            throw new NotImplementedException("Proper Exception Logged");
         }
     }
 }

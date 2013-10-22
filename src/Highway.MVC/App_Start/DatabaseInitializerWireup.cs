@@ -6,8 +6,8 @@ using Highway.Data;
 using System.Data.Entity;
 using Templates.Config;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.DatabaseInitializerWireup), "PostStartup")]
-namespace Templates.App_Start
+[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Architecture.DatabaseInitializerWireup), "PostStartup")]
+namespace Templates.App_Architecture
 {
     public static class DatabaseInitializerWireup
     {

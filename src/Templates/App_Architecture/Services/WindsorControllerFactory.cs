@@ -7,7 +7,7 @@ using System.Web.Routing;
 using Castle.MicroKernel;
 using System.Collections.Generic;
 
-namespace Templates.Services
+namespace Templates.App_Architecture.Services
 {
     // Developed by Krzysztof Kozmic at http://docs.castleproject.org/Windsor.Windsor-tutorial-part-two-plugging-Windsor-in.ashx
     public class WindsorControllerFactory : DefaultControllerFactory

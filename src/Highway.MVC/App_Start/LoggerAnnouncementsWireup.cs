@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using Castle.Core.Logging;
 using System.Data.Entity;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "PostStartup")]
-[assembly: WebActivator.ApplicationShutdownMethod(typeof(Templates.App_Start.LoggerAnnouncementsWireup), "Shutdown")]
-namespace Templates.App_Start
+[assembly: WebActivator.PostApplicationStartMethod(typeof(Templates.App_Architecture.LoggerAnnouncementsWireup), "PostStartup")]
+[assembly: WebActivator.ApplicationShutdownMethod(typeof(Templates.App_Architecture.LoggerAnnouncementsWireup), "Shutdown")]
+namespace Templates.App_Architecture
 {
     public static class LoggerAnnouncementsWireup
     {

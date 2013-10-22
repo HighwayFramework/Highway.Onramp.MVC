@@ -8,9 +8,9 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Highway.Data.EventManagement;
 using Highway.Data;
 using System.Data.Entity;
-using Templates.Config;
+using Templates.App_Architecture.Data;
 
-namespace Templates.Installers
+namespace Templates.App_Architecture.Installers
 {
     // TODO Change the connection string to match your environment.
     public class HighwayDataInstaller : IWindsorInstaller
@@ -18,21 +18,14 @@ namespace Templates.Installers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IDataContext>().ImplementedBy<HighwayDataContext>()
-                    .DependsOn(new
-                    {
-                        connectionString = @"Data Source=.;Initial Catalog=ChangeMyConnectionString;Integrated Security=SSPI;"
-                    })
-                    .LifestylePerWebRequest(),
                 Component.For<IRepository>().ImplementedBy<Repository>()
                     .LifestylePerWebRequest(),
                 Component.For<IEventManager>().ImplementedBy<EventManager>()
                     .LifestyleSingleton(),
-                Component.For<IMappingConfiguration>().ImplementedBy<HighwayMappings>()
+                Component.For<IDatabaseInitializer<HighwayDataContext>>()
+                    .ImplementedBy<DropCreateDatabaseAlways<HighwayDataContext>>()
                     .LifestyleSingleton(),
-                Component.For<IDatabaseInitializer<HighwayDataContext>>().ImplementedBy<HighwayDatabaseInitializer>()
-                    .LifestyleSingleton(),
-                Component.For<IContextConfiguration>().ImplementedBy<HighwayContextConfiguration>()
+                Component.For<IContextConfiguration>().ImplementedBy<DefaultContextConfiguration>()
                     .LifestyleSingleton()
                 );
         }

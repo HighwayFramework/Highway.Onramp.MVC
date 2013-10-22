@@ -5,13 +5,13 @@ using System.Web.Mvc;
 using Castle.Core.Logging;
 using System.Collections.Generic;
 
-namespace Templates.BaseTypes
+namespace Templates.App_Architecture.BaseTypes
 {
-    public class BaseLoggingController : Controller
+    public class BaseController : Controller
     {
         public ILogger Logger { get; set; }
 
-        public BaseLoggingController()
+        public BaseController()
         {
             Logger = NullLogger.Instance;
         }
