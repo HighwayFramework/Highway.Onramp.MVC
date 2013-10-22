@@ -16,7 +16,8 @@ namespace Templates.App_Architecture.Installers
         {
             container.Register(
                 Classes.FromThisAssembly()
-                    .BasedOn<IController>()
+                    .Where(type => typeof(IController).IsAssignableFrom(type))
+                    .WithServiceSelf()
                     .LifestyleTransient()
                 );
         }

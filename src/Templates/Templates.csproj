@@ -56,6 +56,9 @@
     <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging.NLog">
+      <HintPath>..\packages\Common.Logging.NLog.Net4.2.1.2\lib\net40\Common.Logging.NLog.dll</HintPath>
+    </Reference>
     <Reference Include="Highway.Data">
       <HintPath>..\packages\Highway.Data.4.1.0.2\lib\net40\Highway.Data.dll</HintPath>
     </Reference>
@@ -196,6 +199,7 @@
     <Compile Include="App_Architecture\Activators\AnnouncementsActivator.cs" />
     <Compile Include="App_Architecture\BaseTypes\BaseController.cs" />
     <Compile Include="App_Architecture\Configs\IConnectionStringConfig.cs" />
+    <Compile Include="App_Architecture\Installers\CommonLoggingInstaller.cs" />
     <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />
     <Compile Include="App_Architecture\IoC.cs" />
     <Compile Include="App_Architecture\Data\HighwayDataContext.cs" />

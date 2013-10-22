@@ -16,6 +16,7 @@ namespace Templates.App_Architecture.Installers
             container.Register(
                 Classes.FromThisAssembly().Pick()
                     .WithServiceDefaultInterfaces()
+                    .Unless(type => typeof(IController).IsAssignableFrom(type))
                     .LifestylePerWebRequest()
                 );
         }

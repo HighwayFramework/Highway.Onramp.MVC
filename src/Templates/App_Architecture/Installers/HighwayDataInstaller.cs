@@ -9,10 +9,10 @@ using Highway.Data.EventManagement;
 using Highway.Data;
 using System.Data.Entity;
 using Templates.App_Architecture.Data;
+using Common.Logging;
 
 namespace Templates.App_Architecture.Installers
 {
-    // TODO Change the connection string to match your environment.
     public class HighwayDataInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
