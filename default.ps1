@@ -47,9 +47,10 @@ task compile-template {
     rebuild .\src\Highway.MVC.sln
 }
 
-task onramper-template -depends Update-Version {
-    Remove-Item -Force -Recurse .\src\Highway.MVC\bin -ErrorAction SilentlyContinue
-    & $onramperexe --source=.\src\Templates --destination=.\build --config=.\src\nuspec\ --execute=$nugetexe
+task onramper-template -depends Update-Version, clean-buildarchive {
+    Remove-Item -Force -Recurse .\src\Templates\bin -ErrorAction SilentlyContinue
+    & $onramperexe --source=.\src\Templates --destination=$build_dir --config=.\src\nuspec\ --execute=$nugetexe
+    Move-Item "$($build_dir.FullName)\*.nupkg" $build_archive
 }
 
 task Update-Version {
