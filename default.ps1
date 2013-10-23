@@ -56,7 +56,7 @@ task onramper-template -depends Update-Version, clean-buildarchive {
 task Update-Version {
     Get-Item .\src\nuspec\*.nuspec | % {
         $doc = [xml] (Get-Content $_)
-        $doc.package.metadata.version = $version_number
+        $doc.package.metadata.version = $nuget_version_number
         $writer = New-Object System.Xml.XmlTextWriter($_,$null)
         $writer.Formatting = [System.Xml.Formatting]::Indented
         $doc.Save($writer)
