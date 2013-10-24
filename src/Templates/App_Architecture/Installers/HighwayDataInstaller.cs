@@ -9,7 +9,6 @@ using Highway.Data.EventManagement;
 using Highway.Data;
 using System.Data.Entity;
 using Templates.App_Architecture.PlugIns.Data;
-using Common.Logging;
 
 namespace Templates.App_Architecture.Installers
 {
@@ -21,9 +20,6 @@ namespace Templates.App_Architecture.Installers
                 Component.For<IRepository>().ImplementedBy<Repository>()
                     .LifestylePerWebRequest(),
                 Component.For<IEventManager>().ImplementedBy<EventManager>()
-                    .LifestyleSingleton(),
-                Component.For<IDatabaseInitializer<HighwayDataContext>>()
-                    .ImplementedBy<DropCreateDatabaseAlways<HighwayDataContext>>()
                     .LifestyleSingleton(),
                 Component.For<IContextConfiguration>().ImplementedBy<DefaultContextConfiguration>()
                     .LifestyleSingleton()

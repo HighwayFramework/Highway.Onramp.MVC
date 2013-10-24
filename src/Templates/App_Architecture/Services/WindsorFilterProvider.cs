@@ -8,16 +8,18 @@ namespace Templates.App_Architecture.Services
 {
     public class WindsorFilterProvider : IFilterProvider
     {
-        private readonly IEnumerable<Func<ControllerContext, ActionDescriptor, Filter>> registeredFilters;
+        private readonly IEnumerable<IInjectableFilter> registeredFilters;
 
-        public WindsorFilterProvider(Func<ControllerContext, ActionDescriptor, Filter>[] registeredFilters)
+        public WindsorFilterProvider(IInjectableFilter[] registeredFilters)
         {
             this.registeredFilters = registeredFilters;
         }
 
         public IEnumerable<Filter> GetFilters(ControllerContext controllerContext, ActionDescriptor actionDescriptor)
         {
-            return registeredFilters.Select(m => m.Invoke(controllerContext, actionDescriptor)).Where(m => m != null);
+            return registeredFilters
+                .Where(e => e.IsValid(controllerContext, actionDescriptor))
+                .Select(e => new Filter(e,e.Scope,e.Order));
         }
     }
 }

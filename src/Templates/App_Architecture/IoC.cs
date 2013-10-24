@@ -14,7 +14,7 @@ namespace Templates.App_Architecture
         // and :
         // #pragma warning restore 618
         // To temporarily supress this warning.
-        [Obsolete("Container should never be accessed directly outside of App_Start")]
+        [Obsolete("Container should never be accessed directly outside of App_Architecture/Activators")]
         public static IWindsorContainer Container { get; set; }
     }
 }

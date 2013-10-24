@@ -1,4 +1,3 @@
-﻿// [[Highway.Onramp.MVC]]
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +8,8 @@ using Castle.Components.DictionaryAdapter;
 namespace Templates.App_Architecture.Configs
 {
     [KeyPrefix("EntityFramework.")]
-    public interface IConnectionStringConfig
+    public interface IDatabaseInitializerConfig
     {
-        string ConnectionString { get; set; }
+        InitializerTypes Initializer { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.MicroKernel;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Templates.App_Architecture.Services
 {
@@ -24,6 +25,7 @@ namespace Templates.App_Architecture.Services
             kernel.ReleaseComponent(controller);
         }
 
+        [DebuggerStepThrough]
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
             if (controllerType == null)

@@ -34,9 +34,6 @@ namespace Templates.App_Architecture.Activators
                 Component.For<IWindsorContainer>().Instance(IoC.Container)
                 );
 
-            // Search for an use all installers in this application.
-            IoC.Container.Install(FromAssembly.This());
-
             // Our configuration magic, register all interfaces ending in Config from
             // this assembly, and create implementations using DictionaryAdapter
             // from the AppSettings in our app.config.
@@ -50,6 +47,11 @@ namespace Templates.App_Architecture.Activators
                             (k, m, c) => daf.GetAdapter(m.Implementation, ConfigurationManager.AppSettings)
                             )
                     ));
+
+
+            // Search for an use all installers in this application.
+            IoC.Container.Install(FromAssembly.This());
+
 #pragma warning restore 618
         }
     }
