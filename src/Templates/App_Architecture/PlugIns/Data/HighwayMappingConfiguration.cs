@@ -12,13 +12,7 @@ namespace Templates.App_Architecture.PlugIns.Data
         public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
         {
             // TODO Create Mappings Here!
-            modelBuilder.Entity<DeleteMe>();
+            modelBuilder.Entity<ExampleEntity>();
         }
-    }
-
-    // TODO Delete this class once you've created your mappings
-    public class DeleteMe
-    {
-        public int Id { get; set; }
     }
 }

@@ -201,6 +201,7 @@
     <Compile Include="App_Architecture\Configs\IDatabaseInitializerConfig.cs" />
     <Compile Include="App_Architecture\Configs\InitializerTypes.cs" />
     <Compile Include="App_Architecture\Installers\EntityFrameworkInstaller.cs" />
+    <Compile Include="Entities\ExampleEntity.cs" />
     <Compile Include="App_Architecture\Services\IInjectableFilter.cs" />
     <Compile Include="App_Architecture\Installers\CommonLoggingInstaller.cs" />
     <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />

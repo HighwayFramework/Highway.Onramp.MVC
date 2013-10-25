@@ -21,7 +21,7 @@ namespace Templates.Controllers
         public ActionResult Index()
         {
             Logger.Debug("Home Controller, checking in sir.");
-            return View(repo.Context.AsQueryable<DeleteMe>().ToList());
+            return View(repo.Context.AsQueryable<ExampleEntity>().ToList());
         }
 
         public ActionResult BlowUp()
