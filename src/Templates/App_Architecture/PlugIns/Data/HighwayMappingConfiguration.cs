@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Highway.Data;
+using Templates.Entities;
 
 namespace Templates.App_Architecture.PlugIns.Data
 {

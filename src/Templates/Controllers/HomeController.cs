@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Templates.App_Architecture.BaseTypes;
 using Templates.App_Architecture.PlugIns.Data;
+using Templates.Entities;
 
 namespace Templates.Controllers
 {

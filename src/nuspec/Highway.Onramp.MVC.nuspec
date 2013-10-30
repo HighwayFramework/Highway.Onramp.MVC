@@ -14,6 +14,7 @@
     <dependencies>
       <dependency id="WebActivatorEx" />
       <dependency id="Castle.Windsor-NLog" />
+      <dependency id="Common.Logging.NLog" />
     </dependencies>
   </metadata>
 </package>
