@@ -6,9 +6,8 @@ using System.Linq;
 
 namespace Templates.Entities
 {
-    public class ExampleEntity : BaseEntity
+    public abstract class BaseEntity : IIdentifiable<Guid>
     {
-        // Id is a Guid and inherited from BaseEntity
-        public string Name { get; set; }
+        public Guid Id { get; set; }
     }
 }

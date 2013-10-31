@@ -8,7 +8,7 @@ using Castle.MicroKernel;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Templates.App_Architecture.Services
+namespace Templates.App_Architecture.Services.Core
 {
     // Developed by Krzysztof Kozmic at http://docs.castleproject.org/Windsor.Windsor-tutorial-part-two-plugging-Windsor-in.ashx
     public class WindsorControllerFactory : DefaultControllerFactory

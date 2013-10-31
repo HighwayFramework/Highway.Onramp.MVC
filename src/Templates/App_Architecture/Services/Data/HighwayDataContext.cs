@@ -8,7 +8,7 @@ using System.Data.Entity;
 using Common.Logging;
 using Templates.App_Architecture.Configs;
 
-namespace Templates.App_Architecture.PlugIns.Data
+namespace Templates.App_Architecture.Services.Data
 {
     public class HighwayDataContext : DataContext
     {

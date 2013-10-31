@@ -77,12 +77,24 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -191,35 +203,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Architecture\Activators\ApiConfigurationActivator.cs" />
     <Compile Include="App_Architecture\Activators\ControllerFactoryActivator.cs" />
     <Compile Include="App_Architecture\Activators\DatabaseInitializerActivator.cs" />
     <Compile Include="App_Architecture\Activators\FilterProviderActivator.cs" />
     <Compile Include="App_Architecture\Activators\WindsorActivator.cs" />
     <Compile Include="App_Architecture\Activators\AnnouncementsActivator.cs" />
     <Compile Include="App_Architecture\BaseTypes\BaseController.cs" />
+    <Compile Include="App_Architecture\BaseTypes\BaseApiController.cs" />
+    <Compile Include="App_Architecture\BaseTypes\BaseRestApiController.cs" />
     <Compile Include="App_Architecture\Configs\IConnectionStringConfig.cs" />
     <Compile Include="App_Architecture\Configs\IDatabaseInitializerConfig.cs" />
     <Compile Include="App_Architecture\Configs\InitializerTypes.cs" />
     <Compile Include="App_Architecture\Installers\EntityFrameworkInstaller.cs" />
+    <Compile Include="App_Architecture\Services\Core\WindsorHttpControllerActivator.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\ExampleEntity.cs" />
-    <Compile Include="App_Architecture\Services\IInjectableFilter.cs" />
+    <Compile Include="App_Architecture\Services\Core\IInjectableFilter.cs" />
     <Compile Include="App_Architecture\Installers\CommonLoggingInstaller.cs" />
     <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />
     <Compile Include="App_Architecture\IoC.cs" />
-    <Compile Include="App_Architecture\PlugIns\Data\HighwayDataContext.cs" />
-    <Compile Include="App_Architecture\PlugIns\Data\HighwayMappingConfiguration.cs" />
+    <Compile Include="App_Architecture\Services\Data\HighwayDataContext.cs" />
+    <Compile Include="App_Architecture\Services\Data\HighwayMappingConfiguration.cs" />
     <Compile Include="App_Architecture\Filters\ExceptionLoggingInjectableFilter.cs" />
     <Compile Include="App_Architecture\Installers\ControllersInstaller.cs" />
     <Compile Include="App_Architecture\Installers\HighwayDataInstaller.cs" />
     <Compile Include="App_Architecture\Installers\LoggingInstaller.cs" />
-    <Compile Include="App_Architecture\Services\WindsorFilterProvider.cs" />
-    <Compile Include="App_Architecture\Services\WindsorControllerFactory.cs" />
+    <Compile Include="App_Architecture\Services\Core\WindsorFilterProvider.cs" />
+    <Compile Include="App_Architecture\Services\Core\WindsorControllerFactory.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entities\Mappings\BaseMapping.cs" />
+    <Compile Include="Entities\Mappings\ExampleEntityMapping.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

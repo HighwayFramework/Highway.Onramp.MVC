@@ -13,6 +13,8 @@
     <tags>Highway MVC architecture</tags>
     <dependencies>
       <dependency id="WebActivatorEx" />
+      <dependency id="Microsoft.AspNet.WebApi" />
+      <dependency id="Microsoft.AspNet.Mvc" />
       <dependency id="Castle.Windsor-NLog" />
       <dependency id="Common.Logging.NLog" />
     </dependencies>

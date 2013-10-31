@@ -8,7 +8,6 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Highway.Data.EventManagement;
 using Highway.Data;
 using System.Data.Entity;
-using Templates.App_Architecture.PlugIns.Data;
 
 namespace Templates.App_Architecture.Installers
 {

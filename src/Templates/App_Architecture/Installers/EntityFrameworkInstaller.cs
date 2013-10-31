@@ -6,8 +6,8 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
 using System.Data.Entity;
-using Templates.App_Architecture.PlugIns.Data;
 using Templates.App_Architecture.Configs;
+using Templates.App_Architecture.Services.Data;
 
 namespace Templates.App_Architecture.Installers
 {

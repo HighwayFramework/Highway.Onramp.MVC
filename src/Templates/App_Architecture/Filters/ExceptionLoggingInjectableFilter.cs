@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Castle.Core.Logging;
 using Castle.Windsor;
 using Templates.App_Architecture.Services;
+using Templates.App_Architecture.Services.Core;
 
 namespace Templates.App_Architecture.Filters
 {

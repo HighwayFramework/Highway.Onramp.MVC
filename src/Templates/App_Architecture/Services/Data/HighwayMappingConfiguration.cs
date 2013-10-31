@@ -6,14 +6,13 @@ using System.Linq;
 using Highway.Data;
 using Templates.Entities;
 
-namespace Templates.App_Architecture.PlugIns.Data
+namespace Templates.App_Architecture.Services.Data
 {
     public class HighwayMappingConfiguration : IMappingConfiguration
     {
         public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
         {
-            // TODO Create Mappings Here!
-            modelBuilder.Entity<ExampleEntity>();
+            modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
         }
     }
 }

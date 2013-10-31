@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Templates.App_Architecture.Services
+namespace Templates.App_Architecture.Services.Core
 {
     public class WindsorFilterProvider : IFilterProvider
     {

@@ -3,8 +3,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity;
-using Templates.App_Architecture.PlugIns.Data;
 using Templates.App_Architecture.Activators;
+using Templates.App_Architecture.Services.Data;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(
     typeof(DatabaseInitializerActivator), 
