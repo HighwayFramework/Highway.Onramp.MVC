@@ -12,6 +12,7 @@ using System.Configuration;
 using Templates.App_Architecture.Activators;
 using Templates.App_Architecture.Services.Core;
 using System.Web;
+using System.Collections;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(
     typeof(WindsorActivator), 
@@ -59,7 +60,7 @@ namespace Templates.App_Architecture.Activators
                     .Where(type => type.IsInterface && type.Name.EndsWith("Session"))
                     .Configure(
                         reg => reg.UsingFactoryMethod(
-                            (k, m, c) => daf.GetAdapter(m.Implementation, new SessionDictionary(HttpContext.Current.Session))
+                            (k, m, c) => daf.GetAdapter(m.Implementation, new SessionDictionary(HttpContext.Current.Session) as IDictionary)
                             )
                     ).LifestylePerWebRequest());
 
