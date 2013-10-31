@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Highway.Onramp.MVC</id>
-    <version>3.0.0.0</version>
+    <version>3.0.0.0-Alpha1</version>
     <authors>Tim Rayburn and Devlin Liles</authors>
     <owners>TRayburn</owners>
     <licenseUrl>http://hwyfwk.com/license.html</licenseUrl>
