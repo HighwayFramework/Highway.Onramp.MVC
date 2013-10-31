@@ -216,6 +216,9 @@
     <Compile Include="App_Architecture\Configs\IDatabaseInitializerConfig.cs" />
     <Compile Include="App_Architecture\Configs\InitializerTypes.cs" />
     <Compile Include="App_Architecture\Installers\EntityFrameworkInstaller.cs" />
+    <Compile Include="App_Architecture\Services\Core\SessionDictionary.cs" />
+    <Compile Include="App_Architecture\Services\Core\CollectionAdapter.cs" />
+    <Compile Include="App_Architecture\Services\Core\DictionaryEnumerator.cs" />
     <Compile Include="App_Architecture\Services\Core\WindsorHttpControllerActivator.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\ExampleEntity.cs" />

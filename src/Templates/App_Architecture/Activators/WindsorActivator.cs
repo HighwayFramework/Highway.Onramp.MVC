@@ -10,6 +10,8 @@ using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Components.DictionaryAdapter;
 using System.Configuration;
 using Templates.App_Architecture.Activators;
+using Templates.App_Architecture.Services.Core;
+using System.Web;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(
     typeof(WindsorActivator), 
@@ -47,6 +49,19 @@ namespace Templates.App_Architecture.Activators
                             (k, m, c) => daf.GetAdapter(m.Implementation, ConfigurationManager.AppSettings)
                             )
                     ));
+
+            // Our session magic, register all interfaces ending in Session from
+            // this assembly, and create implementations using DictionaryAdapter
+            // from the current HttpSession
+            IoC.Container.Register(
+                Types
+                    .FromThisAssembly()
+                    .Where(type => type.IsInterface && type.Name.EndsWith("Session"))
+                    .Configure(
+                        reg => reg.UsingFactoryMethod(
+                            (k, m, c) => daf.GetAdapter(m.Implementation, new SessionDictionary(HttpContext.Current.Session))
+                            )
+                    ).LifestylePerWebRequest());
 
 
             // Search for an use all installers in this application.
