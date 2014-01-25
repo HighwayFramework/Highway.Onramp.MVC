@@ -1,5 +1,5 @@
 // [[Highway.Onramp.MVC.Data]]
-using Highway.Data.PrebuiltQueries;
+using Highway.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

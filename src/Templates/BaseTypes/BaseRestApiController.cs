@@ -1,24 +1,26 @@
 ﻿// [[Highway.Onramp.MVC]]
 using Highway.Data;
-using Highway.Data.PrebuiltQueries;
+using Highway.Data;
+using Highway.Data.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace Templates.App_Architecture.BaseTypes
+namespace Templates.BaseTypes
 {
-    public abstract class BaseRestApiController<TId, TEntity> : BaseApiController
+    public abstract class BaseRestApiController<TDomain, TEntity, TId> : BaseApiController
         where TId : struct, global::System.IEquatable<TId>
         where TEntity : class, IIdentifiable<TId>
+        where TDomain : class, IDomain
     {
-        protected IRepository repo;
+        protected IRepositoryFactory factory;
         protected RestOperations ops;
 
-        public BaseRestApiController(IRepository repo, RestOperations ops)
+        public BaseRestApiController(IRepositoryFactory factory, RestOperations ops)
         {
-            this.repo = repo;
+            this.factory = factory;
             this.ops = ops;
         }
 
@@ -45,6 +47,7 @@ namespace Templates.App_Architecture.BaseTypes
             if (ops.HasFlag(RestOperations.GetAll) == false)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
 
+            var repo = factory.Create<TDomain>();
             return repo.Find(new FindAll<TEntity>());
         }
 
@@ -53,6 +56,7 @@ namespace Templates.App_Architecture.BaseTypes
             if (ops.HasFlag(RestOperations.GetOne) == false)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
 
+            var repo = factory.Create<TDomain>();
             return repo.Find(new GetById<TId, TEntity>(id));
         }
 
@@ -61,6 +65,7 @@ namespace Templates.App_Architecture.BaseTypes
             if (ops.HasFlag(RestOperations.Post) == false)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
 
+            var repo = factory.Create<TDomain>();
             repo.Context.Add(entity);
             repo.Context.Commit();
         }
@@ -70,6 +75,7 @@ namespace Templates.App_Architecture.BaseTypes
             if (ops.HasFlag(RestOperations.Put) == false)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
 
+            var repo = factory.Create<TDomain>();
             var updateTarget = repo.Find(new GetById<TId, TEntity>(id));
             CopyEntityValues(entity, updateTarget);
             repo.Context.Commit();
@@ -80,6 +86,7 @@ namespace Templates.App_Architecture.BaseTypes
             if (ops.HasFlag(RestOperations.Delete) == false)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
 
+            var repo = factory.Create<TDomain>();
             var original = repo.Find(new GetById<TId, TEntity>(id));
             repo.Context.Remove(original);
             repo.Context.Commit();

@@ -1,4 +1,4 @@
-// [[Highway.Onramp.MVC.Data]]
+﻿// [[Highway.Onramp.MVC]]
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Web;
 using System.Data.Entity;
 using Castle.Components.DictionaryAdapter;
 
-namespace Templates.App_Architecture.Configs
+namespace Templates.Configs
 {
     [KeyPrefix("EntityFramework.")]
-    public interface IDatabaseInitializerConfig
+    public interface IConnectionStringConfig
     {
-        InitializerTypes Initializer { get; set; }
+        string ConnectionString { get; set; }
     }
 }

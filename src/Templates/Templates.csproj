@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Templates</RootNamespace>
     <AssemblyName>Templates</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,11 +60,13 @@
     <Reference Include="Common.Logging.NLog">
       <HintPath>..\packages\Common.Logging.NLog.Net4.2.1.2\lib\net40\Common.Logging.NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Highway.Data">
-      <HintPath>..\packages\Highway.Data.4.1.0.2\lib\net40\Highway.Data.dll</HintPath>
+    <Reference Include="Highway.Data, Version=5.0.0.1, Culture=neutral, PublicKeyToken=fe803c9600455796, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Highway.Data.5.0.0.1\lib\net451\Highway.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Highway.Data.EntityFramework">
-      <HintPath>..\packages\Highway.Data.EntityFramework.4.1.0.2\lib\net40\Highway.Data.EntityFramework.dll</HintPath>
+    <Reference Include="Highway.Data.EntityFramework, Version=5.0.0.1, Culture=neutral, PublicKeyToken=fe803c9600455796, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Highway.Data.EntityFramework.5.0.0.1\lib\net451\Highway.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Highway.Pavement">
       <HintPath>..\packages\Highway.Pavement.0.3.0.0\lib\net40\Highway.Pavement.dll</HintPath>
@@ -77,6 +80,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -85,8 +89,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
@@ -95,9 +98,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -143,6 +144,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -209,12 +211,16 @@
     <Compile Include="App_Architecture\Activators\FilterProviderActivator.cs" />
     <Compile Include="App_Architecture\Activators\WindsorActivator.cs" />
     <Compile Include="App_Architecture\Activators\AnnouncementsActivator.cs" />
-    <Compile Include="App_Architecture\BaseTypes\BaseController.cs" />
-    <Compile Include="App_Architecture\BaseTypes\BaseApiController.cs" />
-    <Compile Include="App_Architecture\BaseTypes\BaseRestApiController.cs" />
-    <Compile Include="App_Architecture\Configs\IConnectionStringConfig.cs" />
-    <Compile Include="App_Architecture\Configs\IDatabaseInitializerConfig.cs" />
-    <Compile Include="App_Architecture\Configs\InitializerTypes.cs" />
+    <Compile Include="App_Architecture\Services\Data\HighwayContextConfiguration.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Entities\Domain.cs" />
+    <Compile Include="BaseTypes\BaseController.cs" />
+    <Compile Include="BaseTypes\BaseApiController.cs" />
+    <Compile Include="BaseTypes\BaseRestApiController.cs" />
+    <Compile Include="Configs\IConnectionStringConfig.cs" />
+    <Compile Include="Configs\IDatabaseInitializerConfig.cs" />
+    <Compile Include="Configs\InitializerTypes.cs" />
     <Compile Include="App_Architecture\Installers\EntityFrameworkInstaller.cs" />
     <Compile Include="App_Architecture\Services\Core\SessionDictionary.cs" />
     <Compile Include="App_Architecture\Services\Core\CollectionAdapter.cs" />
@@ -222,13 +228,13 @@
     <Compile Include="App_Architecture\Services\Core\WindsorHttpControllerActivator.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\ExampleEntity.cs" />
-    <Compile Include="App_Architecture\Services\Core\IInjectableFilter.cs" />
+    <Compile Include="Filters\IInjectableFilter.cs" />
     <Compile Include="App_Architecture\Installers\CommonLoggingInstaller.cs" />
     <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />
     <Compile Include="App_Architecture\IoC.cs" />
     <Compile Include="App_Architecture\Services\Data\HighwayDataContext.cs" />
     <Compile Include="App_Architecture\Services\Data\HighwayMappingConfiguration.cs" />
-    <Compile Include="App_Architecture\Filters\ExceptionLoggingInjectableFilter.cs" />
+    <Compile Include="Filters\ExceptionLoggingInjectableFilter.cs" />
     <Compile Include="App_Architecture\Installers\ControllersInstaller.cs" />
     <Compile Include="App_Architecture\Installers\HighwayDataInstaller.cs" />
     <Compile Include="App_Architecture\Installers\LoggingInstaller.cs" />

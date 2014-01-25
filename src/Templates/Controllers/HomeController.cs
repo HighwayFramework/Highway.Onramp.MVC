@@ -1,27 +1,29 @@
 ﻿using Highway.Data;
+using Highway.Data.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Templates.App_Architecture.BaseTypes;
+using Templates.BaseTypes;
 using Templates.Entities;
 
 namespace Templates.Controllers
 {
     public class HomeController : BaseController
     {
-        private IRepository repo;
+        private IRepositoryFactory factory;
 
-        public HomeController(IRepository repo)
+        public HomeController(IRepositoryFactory factory)
         {
-            this.repo = repo;
+            this.factory = factory;
         }
 
         public ActionResult Index()
         {
             Logger.Debug("Home Controller, checking in sir.");
-            return View(repo.Context.AsQueryable<ExampleEntity>().ToList());
+            var repo = factory.Create<Domain>();
+            return View(repo.Find(new FindAll<ExampleEntity>()).ToList());
         }
 
         public ActionResult BlowUp()

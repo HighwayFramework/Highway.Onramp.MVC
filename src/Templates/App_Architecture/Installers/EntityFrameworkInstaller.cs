@@ -6,8 +6,10 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
 using System.Data.Entity;
-using Templates.App_Architecture.Configs;
+using Templates.Configs;
 using Templates.App_Architecture.Services.Data;
+using Highway.Data;
+using Templates.Entities;
 
 namespace Templates.App_Architecture.Installers
 {
@@ -19,20 +21,20 @@ namespace Templates.App_Architecture.Installers
             switch (config.Initializer)
             {
                 case Configs.InitializerTypes.DropCreateDatabaseAlways:
-                    container.Register(Component.For<IDatabaseInitializer<HighwayDataContext>>()
-                        .ImplementedBy<DropCreateDatabaseAlways<HighwayDataContext>>().LifestyleSingleton());
+                    container.Register(Component.For<IDatabaseInitializer<DomainContext<Domain>>>()
+                        .ImplementedBy<DropCreateDatabaseAlways<DomainContext<Domain>>>().LifestyleSingleton());
                     break;
                 case Configs.InitializerTypes.DropCreateDatabaseIfModelChanges:
-                    container.Register(Component.For<IDatabaseInitializer<HighwayDataContext>>()
-                        .ImplementedBy<DropCreateDatabaseIfModelChanges<HighwayDataContext>>().LifestyleSingleton());
+                    container.Register(Component.For<IDatabaseInitializer<DomainContext<Domain>>>()
+                        .ImplementedBy<DropCreateDatabaseIfModelChanges<DomainContext<Domain>>>().LifestyleSingleton());
                     break;
                 case Configs.InitializerTypes.CreateDatabaseIfNotExists:
-                    container.Register(Component.For<IDatabaseInitializer<HighwayDataContext>>()
-                        .ImplementedBy<CreateDatabaseIfNotExists<HighwayDataContext>>().LifestyleSingleton());
+                    container.Register(Component.For<IDatabaseInitializer<DomainContext<Domain>>>()
+                        .ImplementedBy<CreateDatabaseIfNotExists<DomainContext<Domain>>>().LifestyleSingleton());
                     break;
                 case Configs.InitializerTypes.NullDatabaseInitializer:
-                    container.Register(Component.For<IDatabaseInitializer<HighwayDataContext>>()
-                        .ImplementedBy<NullDatabaseInitializer<HighwayDataContext>>().LifestyleSingleton());
+                    container.Register(Component.For<IDatabaseInitializer<DomainContext<Domain>>>()
+                        .ImplementedBy<NullDatabaseInitializer<DomainContext<Domain>>>().LifestyleSingleton());
                     break;
                 default:
                     throw new NotImplementedException("Unknown Enumeration Value");

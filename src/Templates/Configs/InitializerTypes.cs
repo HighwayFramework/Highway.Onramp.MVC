@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace Templates.App_Architecture.Configs
+namespace Templates.Configs
 {
     public enum InitializerTypes
     {

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Castle.Core.Logging;
 using Castle.Windsor;
 
-namespace Templates.App_Architecture.Services.Core
+namespace Templates.Filters
 {
     public interface IInjectableFilter
     {

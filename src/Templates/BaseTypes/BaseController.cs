@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Castle.Core.Logging;
 using System.Collections.Generic;
 
-namespace Templates.App_Architecture.BaseTypes
+namespace Templates.BaseTypes
 {
     public class BaseController : Controller
     {

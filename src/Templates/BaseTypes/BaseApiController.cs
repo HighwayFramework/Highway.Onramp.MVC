@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace Templates.App_Architecture.BaseTypes
+namespace Templates.BaseTypes
 {
     public abstract class BaseApiController : ApiController
     {

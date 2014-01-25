@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Templates.App_Architecture.Services;
+using System.Web.Http.Controllers;
 
 namespace Templates.App_Architecture.Installers
 {
@@ -16,7 +17,7 @@ namespace Templates.App_Architecture.Installers
         {
             container.Register(
                 Classes.FromThisAssembly()
-                    .Where(type => typeof(IController).IsAssignableFrom(type))
+                    .Where(type => typeof(IController).IsAssignableFrom(type) || typeof(IHttpController).IsAssignableFrom(type))
                     .WithServiceSelf()
                     .LifestyleTransient()
                 );

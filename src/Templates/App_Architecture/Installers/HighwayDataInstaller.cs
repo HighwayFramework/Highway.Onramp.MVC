@@ -5,9 +5,10 @@ using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
-using Highway.Data.EventManagement;
 using Highway.Data;
-using System.Data.Entity;
+using Highway.Data.Factories;
+using Highway.Data.Repositories;
+using Templates.App_Architecture.Services.Data;
 
 namespace Templates.App_Architecture.Installers
 {
@@ -16,13 +17,7 @@ namespace Templates.App_Architecture.Installers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IRepository>().ImplementedBy<Repository>()
-                    .LifestylePerWebRequest(),
-                Component.For<IEventManager>().ImplementedBy<EventManager>()
-                    .LifestyleSingleton(),
-                Component.For<IContextConfiguration>().ImplementedBy<DefaultContextConfiguration>()
-                    .LifestyleSingleton()
-                );
+                Component.For<IRepositoryFactory>().ImplementedBy<RepositoryFactory>());
         }
     }
 }
