@@ -9,7 +9,7 @@
     <projectUrl>http://hwyfwk.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Quickstart package for Highway Framework in an MVC project.</description>
-    <copyright>Copyright 2013 Timothy J. Rayburn</copyright>
+    <copyright>Copyright 2014 Timothy J. Rayburn</copyright>
     <tags>Highway MVC architecture</tags>
     <dependencies>
       <dependency id="Highway.Onramp.MVC" />
