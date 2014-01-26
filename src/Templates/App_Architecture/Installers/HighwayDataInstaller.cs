@@ -17,7 +17,7 @@ namespace Templates.App_Architecture.Installers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IRepositoryFactory>().ImplementedBy<RepositoryFactory>());
+                Component.For<IDomainRepositoryFactory>().ImplementedBy<DomainRepositoryFactory>());
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿// [[Highway.Onramp.MVC]]
 using Highway.Data;
-using Highway.Data;
 using Highway.Data.Factories;
 using System;
 using System.Collections.Generic;
@@ -15,10 +14,10 @@ namespace Templates.BaseTypes
         where TEntity : class, IIdentifiable<TId>
         where TDomain : class, IDomain
     {
-        protected IRepositoryFactory factory;
+        protected IDomainRepositoryFactory factory;
         protected RestOperations ops;
 
-        public BaseRestApiController(IRepositoryFactory factory, RestOperations ops)
+        public BaseRestApiController(IDomainRepositoryFactory factory, RestOperations ops)
         {
             this.factory = factory;
             this.ops = ops;

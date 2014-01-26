@@ -60,13 +60,21 @@
     <Reference Include="Common.Logging.NLog">
       <HintPath>..\packages\Common.Logging.NLog.Net4.2.1.2\lib\net40\Common.Logging.NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Highway.Data, Version=5.0.0.1, Culture=neutral, PublicKeyToken=fe803c9600455796, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Highway.Data.5.0.0.1\lib\net451\Highway.Data.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Highway.Data.EntityFramework, Version=5.0.0.1, Culture=neutral, PublicKeyToken=fe803c9600455796, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Highway.Data.EntityFramework.5.0.0.1\lib\net451\Highway.Data.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Highway.Data, Version=5.0.2.0, Culture=neutral, PublicKeyToken=fe803c9600455796, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Highway.Data.5.0.2.0\lib\net451\Highway.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Highway.Data.EntityFramework, Version=5.0.2.0, Culture=neutral, PublicKeyToken=fe803c9600455796, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Highway.Data.EntityFramework.5.0.2.0\lib\net451\Highway.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Highway.Pavement">
       <HintPath>..\packages\Highway.Pavement.0.3.0.0\lib\net40\Highway.Pavement.dll</HintPath>
@@ -158,12 +166,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -232,7 +234,6 @@
     <Compile Include="App_Architecture\Installers\CommonLoggingInstaller.cs" />
     <Compile Include="App_Architecture\Installers\DefaultConventionInstaller.cs" />
     <Compile Include="App_Architecture\IoC.cs" />
-    <Compile Include="App_Architecture\Services\Data\HighwayDataContext.cs" />
     <Compile Include="App_Architecture\Services\Data\HighwayMappingConfiguration.cs" />
     <Compile Include="Filters\ExceptionLoggingInjectableFilter.cs" />
     <Compile Include="App_Architecture\Installers\ControllersInstaller.cs" />

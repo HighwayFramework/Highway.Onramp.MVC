@@ -12,7 +12,7 @@ namespace Templates.Controllers
 {
     public class ApiController : BaseRestApiController<Domain, ExampleEntity, Guid>
     {
-        public ApiController(IRepositoryFactory factory)
+        public ApiController(IDomainRepositoryFactory factory)
             : base(factory, RestOperations.All)
         {
         }

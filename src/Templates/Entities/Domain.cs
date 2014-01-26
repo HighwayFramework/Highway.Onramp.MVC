@@ -10,39 +10,20 @@ namespace Templates.Entities
 {
     public class Domain : IDomain
     {
-        private IConnectionStringConfig connString;
-        private IContextConfiguration contextConfig;
-        private IMappingConfiguration mappings;
-
-        public Domain(IConnectionStringConfig connString, IContextConfiguration contextConfig, IMappingConfiguration mappings)
+        public Domain(IConnectionStringConfig connString, IMappingConfiguration mappings)
         {
-            this.connString = connString;
-            this.contextConfig = contextConfig;
-            this.mappings = mappings;
+            ConnectionString = connString.ConnectionString;
+            Mappings = mappings;
+            Context = new DefaultContextConfiguration();
             Events = new List<IInterceptor>()
             {
                 // Any default interceptors can go here.
             };
         }
 
-        public string ConnectionString
-        {
-            get { return connString.ConnectionString; }
-            set { connString.ConnectionString = value; }
-        }
-
-        public IContextConfiguration Context
-        {
-            get { return contextConfig; }
-            set { contextConfig = value; }
-        }
-
-        public List<IInterceptor> Events { get; set; }
-
-        public IMappingConfiguration Mappings
-        {
-            get { return mappings; }
-            set { mappings = value; }
-        }
+        public string ConnectionString { get; private set; }
+        public IContextConfiguration Context { get; private set; }
+        public List<IInterceptor> Events { get; private set; }
+        public IMappingConfiguration Mappings { get; private set; }
     }
 }

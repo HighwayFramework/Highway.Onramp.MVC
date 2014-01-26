@@ -12,9 +12,9 @@ namespace Templates.Controllers
 {
     public class HomeController : BaseController
     {
-        private IRepositoryFactory factory;
+        private readonly IDomainRepositoryFactory factory;
 
-        public HomeController(IRepositoryFactory factory)
+        public HomeController(IDomainRepositoryFactory factory)
         {
             this.factory = factory;
         }
