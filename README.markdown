@@ -1,3 +1,3 @@
 # Highway.OnRamp.MVC
 
-Documentation can be found at http://hwkfwk.com/projects/onramp-mvc
+Documentation can be found at http://hwyfwk.com/projects/onramp-mvc
