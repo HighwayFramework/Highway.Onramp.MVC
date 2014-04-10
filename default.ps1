@@ -15,7 +15,7 @@ properties {
     $build_archive = ".\buildarchive"
     $nugetexe = Get-Item ".\src\.nuget\NuGet.exe"
     $onramperexe = ".\Onramper.exe"
-    $version_number = "3.0.1.0"
+    $version_number = "3.0.2.0"
     $nuget_version_number = $version_number
 
     if ($Env:BUILD_NUMBER -ne $null) {

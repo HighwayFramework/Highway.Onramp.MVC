@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Highway.Onramp.MVC.Data</id>
-    <version>3.0.1.0</version>
+    <version>3.0.2.0</version>
     <authors>Tim Rayburn and Devlin Liles</authors>
     <owners>TRayburn</owners>
     <licenseUrl>http://hwyfwk.com/license.html</licenseUrl>
@@ -13,7 +13,7 @@
     <tags>Highway MVC architecture</tags>
     <dependencies>
       <dependency id="Highway.Onramp.MVC" />
-      <dependency id="Highway.Data.EntityFramework" version="5.0.2.0" />
+      <dependency id="Highway.Data.EntityFramework" version="5.0.6.0" />
     </dependencies>
   </metadata>
 </package>
